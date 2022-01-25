@@ -6,7 +6,6 @@ import { router } from "./routes/router";
 
 export const app = express();
 
-
 app.use(bodyParser.json());
 app.use(logger("dev"));
 app.use(corsConfig);
