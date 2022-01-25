@@ -6,6 +6,9 @@
   "description": "Get games news using web scraping",
   "repository": "https://github.com/Williancc1557/games-news",
   "author": "Willian Cavalcanti Coelho",
+  "scripts": {
+    "dev": "tsnd  --transpile-only --respawn --ignore-watch node_modules src/server.ts"
+  },
   "devDependencies": {
     "@techmmunity/eslint-config": "^5.2.1",
     "@types/jest": "^27.4.0",
@@ -19,14 +22,20 @@
   "dependencies": {
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
+    "@types/express-rate-limit": "^6.0.0",
+    "@types/morgan": "^1.9.3",
     "@types/pino": "^7.0.5",
     "@types/pino-http": "^5.8.1",
+    "@types/pino-pretty": "^4.7.4",
     "@types/supertest": "^2.0.11",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
+    "express-rate-limit": "^6.2.0",
+    "morgan": "^1.10.0",
     "pino": "^7.6.4",
     "pino-http": "^6.6.0",
+    "pino-pretty": "^7.5.0",
     "ts-node-dev": "^1.1.8"
   }
 }
