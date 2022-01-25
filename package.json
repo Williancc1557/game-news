@@ -7,7 +7,8 @@
   "repository": "https://github.com/Williancc1557/games-news",
   "author": "Willian Cavalcanti Coelho",
   "scripts": {
-    "dev": "tsnd  --transpile-only --respawn --ignore-watch node_modules src/server.ts"
+    "dev": "tsnd  --transpile-only --respawn --ignore-watch node_modules src/server.ts",
+    "test": "jest"
   },
   "dependencies": {
     "@types/axios": "^0.14.0",
