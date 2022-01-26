@@ -25,7 +25,7 @@ Por em quanto a unica rota nessa API é `/` ou seja, sem nenhum parâmetro a mai
   ]
 }
 ```
-
+.
 #### Qual site de news utilizado para realizar a busca? https://www.theenemy.com.br/
 
 
