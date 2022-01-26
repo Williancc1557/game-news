@@ -36,7 +36,7 @@ Ela retorna até **10 novas notícias**, você pode **selecionar a quantidade** 
 
 ```json
 {
-  "requestsNumber": <number>,
+  "requestsNumber": <number>
 }
 ```
 
