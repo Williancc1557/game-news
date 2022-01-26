@@ -3,7 +3,7 @@
 </div>
 
 # Para que serve?
-Deseja pegar alguma novidade relacionado a games? Como jogos, empresas de games, até mesmo polêmicas na internet. Então utilize essa API facil de utilizar.
+Deseja coletar algumas das **novidades** relacionadas a game? Como **jogos, empresas de games, até mesmo polêmicas na internet**. Então utilize essa **API facil de utilizar**.
 
 # Primeiro passos
 
