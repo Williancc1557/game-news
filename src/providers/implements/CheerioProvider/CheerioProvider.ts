@@ -1,13 +1,14 @@
 import cheerio from "cheerio";
-import type { IWebScrapingProvider } from "../IWebScrapingProvider";
+import type { IWebScrapingProvider } from "../../IWebScrapingProvider";
 import axios from "axios";
-import { pinoConfig } from "../../logger/logger";
+import { pinoConfig } from "../../../logger/logger";
+import { getAllHrefNewsFunction, getAllNewsFunction } from "./CheerioAllNewsProvider";
 export class CheerioProvider implements IWebScrapingProvider {
     public constructor(
         private readonly urlWebSite: string,
     ) { }
 
-    public async getFirstHrefNew(): Promise<string> {
+    private async getFirstHrefNews(): Promise<string> {
         pinoConfig.debug("get first href new executed");
         const { data } = await axios.get(this.urlWebSite);
 
@@ -27,14 +28,15 @@ export class CheerioProvider implements IWebScrapingProvider {
         return linkNews.href;
     }
 
-    public async getNew(): Promise<object> {
+    public async getNews(): Promise<object> {
+
         pinoConfig.debug("get new web scraping execute");
         const newResponse = {
             title: "",
             paragraphs: [],
         };
 
-        const hrefNews = await this.getFirstHrefNew();
+        const hrefNews = await this.getFirstHrefNews();
         const { data } = await axios.get(this.urlWebSite + hrefNews);
 
         const $ = cheerio.load(data);
@@ -48,5 +50,16 @@ export class CheerioProvider implements IWebScrapingProvider {
         });
 
         return newResponse;
+    }
+
+    private async getAllHrefNews(): Promise<Array<string>> {
+        pinoConfig.debug("get all href news executed in provider");
+        return getAllHrefNewsFunction(this.urlWebSite);
+    }
+
+    public async getAllNews(requestNumber?: number): Promise<object> {
+        pinoConfig.debug("get all news executed in provider");
+        const allHrefs = await this.getAllHrefNews();
+        return getAllNewsFunction(allHrefs, requestNumber);
     }
 }
