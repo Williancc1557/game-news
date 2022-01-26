@@ -1,4 +1,4 @@
-import { CheerioProvider } from "../../providers/implements/CheerioProvider";
+import { CheerioProvider } from "../../providers/implements/CheerioProvider/CheerioProvider";
 import { GetGameNewsController } from "./GetGameNewsController";
 import { GetGameNewsUseCase } from "./GetGameNewsUseCase";
 

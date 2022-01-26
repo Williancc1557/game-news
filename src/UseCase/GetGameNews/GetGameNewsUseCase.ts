@@ -8,7 +8,7 @@ export class GetGameNewsUseCase {
 
     public async execute() {
         pinoConfig.debug("Get game UseCase execute");
-        const response = await this.webScraping.getNew();
+        const response = await this.webScraping.getNews();
         return response;
     }
 }
