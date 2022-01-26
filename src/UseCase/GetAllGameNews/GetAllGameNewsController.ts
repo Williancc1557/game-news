@@ -12,14 +12,14 @@ export class GetAllGameNewsController {
         try {
             let requestsNumber = Number(req.header("requestsNumber"));
 
-            if (isNaN(requestsNumber)) {
-                requestsNumber = undefined;
-            }
+            if (isNaN(requestsNumber)) requestsNumber = undefined;
+
             const responseRequest = await this.getAllGameNewsUseCase.execute({ requestsNumber });
             return res.json(responseRequest);
         } catch (err) {
             const errorMessage = err.message || "unknown error";
-            return res.json(errorMessage);
+            const errorCode = 400;
+            return res.status(errorCode).json(errorMessage);
         }
     }
 }

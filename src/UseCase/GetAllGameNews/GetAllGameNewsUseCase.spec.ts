@@ -27,4 +27,13 @@ describe("Test /all router", () => {
         expect(req.body[0]).toBe(undefined);
         expect(typeof req.body).toBe("object");
     });
+
+    it("Should test if response return error", async () => {
+        const requestsNumber = 20;
+        const req = await supertest(app).get("/all").set({
+            requestsNumber,
+        });
+        console.log(req.body);
+        expect(typeof req.body).toBe("object");
+    });
 });
