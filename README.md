@@ -7,11 +7,13 @@ Deseja coletar algumas das **novidades** relacionadas a game? Como **jogos, empr
 
 # Primeiro passos
 
-Como faço para utlizar essa API? Utilize alguma lib que sirva para realizar requests em API como um Axios da vida.
+**Como faço para utlizar essa API?** Utilize alguma lib que sirva para realizar requests em API como um Axios da vida.
 
-Qual a url da API? https://game-news-api.herokuapp.com
+Qual a **url** da **API**? https://game-news-api.herokuapp.com
 
-Por em quanto a unica rota nessa API é `/` ou seja, sem nenhum parâmetro a mais!
+Qual site de **news** utilizado para **realizar a busca**? https://www.theenemy.com.br/
+
+A **rota principal** da API é `/` ou seja, sem nenhum parâmetro a mais!
 
 ## Exemplo de retorno 
 
@@ -26,6 +28,43 @@ Por em quanto a unica rota nessa API é `/` ou seja, sem nenhum parâmetro a mai
 }
 ```
 
-#### Qual site de news utilizado para realizar a busca? https://www.theenemy.com.br/
+Tá, mas, eu quero **mais de uma notícia**, que que eu posso fazer?
 
+Utilize a rota `all`, ou seja, https://game-news-api.herokuapp.com/all
 
+Ela retorna até **10 novas notícias**, você pode **selecionar a quantidade** enviando um header com as seguintes credenciais:
+
+```json
+{
+  "requestsNumber": <number>,
+}
+```
+
+## Exemplo de retorno
+
+```json
+{
+[{
+  "title": "Here is News Title",
+  "paragraphs": [
+  "first paragraph",
+  "second paragrapg",
+  . . .]
+},
+{
+  "title": "Here is News Title",
+  "paragraphs": [
+  "first paragraph",
+  "second paragrapg",
+  . . .]
+},
+{
+  "title": "Here is News Title",
+  "paragraphs": [
+  "first paragraph",
+  "second paragrapg",
+  . . .]
+}, 
+. . .
+]}
+```
