@@ -15,7 +15,7 @@ Qual site de **news** utilizado para **realizar a busca**? https://www.theenemy.
 
 A **rota principal** da API é `/` ou seja, sem nenhum parâmetro a mais!
 
-## Exemplo de retorno 
+## Exemplo de retorno `/`
 
 ```json
 {
@@ -40,7 +40,7 @@ Ela retorna até **10 novas notícias**, você pode **selecionar a quantidade** 
 }
 ```
 
-## Exemplo de retorno
+## Exemplo de retorno `/all`
 
 ```json
 {
