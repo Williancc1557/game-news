@@ -16,13 +16,14 @@ export const getAllNewsFunction = async (allHrefs: Array<string>, newsRequestsNu
     }
     pinoConfig.debug("links generateds");
 
-    let maxNewsRequests = newsRequestsNumber;
+    const maxNewsRequests = 10;
 
     if (maxNewsRequests < newsRequestsNumber) throw new Error(`Should send only ${maxNewsRequests} requests`);
+
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers 
     for (let i = 1; allHrefs.length + 1 > i; i++) {
         try {
-            if (i <= maxNewsRequests) {
+            if (i <= newsRequestsNumber) {
                 const { data } = await axios.get(linksComplet[i]);
 
                 const $ = cheerio.load(data);
@@ -38,7 +39,7 @@ export const getAllNewsFunction = async (allHrefs: Array<string>, newsRequestsNu
 
                 const firstParagraph = 0;
                 if (paragraphsNews[firstParagraph] == undefined) {
-                    maxNewsRequests++;
+                    newsRequestsNumber++;
                     throw new Error("Paragraphs not found");
                 }
 
@@ -46,6 +47,8 @@ export const getAllNewsFunction = async (allHrefs: Array<string>, newsRequestsNu
                     title: titleNews,
                     paragraphs: paragraphsNews,
                 });
+            } else {
+                break;
             }
         } catch { }
     }
