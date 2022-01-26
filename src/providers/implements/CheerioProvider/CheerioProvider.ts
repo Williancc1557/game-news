@@ -2,7 +2,7 @@ import cheerio from "cheerio";
 import type { IWebScrapingProvider } from "../../IWebScrapingProvider";
 import axios from "axios";
 import { pinoConfig } from "../../../logger/logger";
-import { getAllHrefNewsFunction, getAllNewsFunction } from "./CheerioAllNewsProvider";
+import { getAllHrefNewsFunction, getAllNewsFunction } from "./CheerioAllNewsFunctionsProvider";
 export class CheerioProvider implements IWebScrapingProvider {
     public constructor(
         private readonly urlWebSite: string,
