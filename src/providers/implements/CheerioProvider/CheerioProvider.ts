@@ -29,7 +29,6 @@ export class CheerioProvider implements IWebScrapingProvider {
     }
 
     public async getNews(): Promise<object> {
-
         pinoConfig.debug("get new web scraping execute");
         const newResponse = {
             title: "",
