@@ -15,10 +15,12 @@ export class GetAllGameNewsController {
             if (isNaN(requestsNumber)) requestsNumber = undefined;
 
             const responseRequest = await this.getAllGameNewsUseCase.execute({ requestsNumber });
+            pinoConfig.debug("All news was sends!");
             return res.json(responseRequest);
         } catch (err) {
             const errorMessage = err.message || "unknown error";
             const errorCode = 400;
+            pinoConfig.debug("The handler in the controller was for catch error");
             return res.status(errorCode).json(errorMessage);
         }
     }

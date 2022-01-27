@@ -14,7 +14,7 @@ export const getAllNewsFunction = async (allHrefs: Array<string>, newsRequestsNu
         if (allHrefs[i].includes("https://")) linksComplet.push(allHrefs[i]);
         else linksComplet.push("https://www.theenemy.com.br/" + allHrefs[i]);
     }
-    pinoConfig.debug("links generateds");
+    pinoConfig.debug("The links was generated!");
 
     const maxNewsRequests = 10;
 

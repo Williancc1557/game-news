@@ -7,11 +7,11 @@ import { getGameNewsController } from "../UseCase/GetGameNews";
 export const router = Router();
 
 router.get("/", async (req: Request, res: Response) => {
-    pinoConfig.debug("Rota / inicializada");
+    pinoConfig.debug("The router / was started");
     await getGameNewsController.handle(req, res);
 });
 
 router.get("/all", async (req: Request, res: Response) => {
-    pinoConfig.debug("Rota /all inicializada");
+    pinoConfig.debug("The router /all was started");
     await getAllGameNewsController.handle(req, res);
 });
