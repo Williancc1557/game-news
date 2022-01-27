@@ -30,7 +30,7 @@ A **rota principal** da API é `/` ou seja, sem nenhum parâmetro a mais!
 
 Tá, mas, eu quero **mais de uma notícia**, que que eu posso fazer?
 
-Utilize a **rota** `all`, ou seja, https://game-news-api.herokuapp.com/all
+Utilize a **rota** `/all`, ou seja, https://game-news-api.herokuapp.com/all
 
 Ela retorna até **10 novas notícias**, você pode **selecionar a quantidade** enviando um header com as seguintes credenciais:
 
