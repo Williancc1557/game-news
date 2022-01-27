@@ -1,7 +1,7 @@
 import supertest from "supertest";
 import { app } from "../../app";
 
-jest.setTimeout(40000);
+jest.setTimeout(45000);
 
 describe("Test /all router", () => {
     it("Should test response with requestsNumber seted", async () => {
@@ -33,7 +33,6 @@ describe("Test /all router", () => {
         const req = await supertest(app).get("/all").set({
             requestsNumber,
         });
-        console.log(req.body);
-        expect(typeof req.body).toBe("object");
+        expect(typeof req.body).toBe("string");
     });
 });
