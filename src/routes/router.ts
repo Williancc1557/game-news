@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
 import { Router } from "express";
 import { pinoConfig } from "../logger/logger";
-import { getAllGameNewsController } from "../UseCase/GetAllGameNews";
+import { allNewsResponse } from "../server";
 import { getGameNewsController } from "../UseCase/GetGameNews";
 
 export const router = Router();
@@ -13,5 +13,5 @@ router.get("/", async (req: Request, res: Response) => {
 
 router.get("/all", async (req: Request, res: Response) => {
     pinoConfig.debug("The router /all was started");
-    await getAllGameNewsController.handle(req, res);
+    res.json(allNewsResponse);
 });

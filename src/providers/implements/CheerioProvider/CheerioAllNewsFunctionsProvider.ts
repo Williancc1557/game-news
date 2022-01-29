@@ -3,8 +3,7 @@ import { pinoConfig } from "../../../logger/logger";
 import cheerio from "cheerio";
 
 
-const defaultRequestsNews = 10;
-export const getAllNewsFunction = async (allHrefs: Array<string>, newsRequestsNumber = defaultRequestsNews): Promise<object> => {
+export const getAllNewsFunction = async (allHrefs: Array<string>, newsRequestsNumber: number): Promise<object> => {
     const linksComplet = [];
     const news = [];
 
