@@ -11,6 +11,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@techmmunity/utils": "^1.10.0",
     "@types/axios": "^0.14.0",
     "@types/cheerio": "^0.22.30",
     "@types/cors": "^2.8.12",

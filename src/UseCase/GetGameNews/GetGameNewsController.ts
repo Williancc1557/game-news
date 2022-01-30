@@ -10,6 +10,7 @@ export class GetGameNewsController {
     public async handle(req: Request, res: Response): Promise<Response> {
         pinoConfig.debug("handle controller executed");
         const response = await this.getGameNewsUseCase.execute();
+        pinoConfig.debug("The news was sended!");
         return res.json(response);
     }
 }
