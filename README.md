@@ -3,6 +3,7 @@
 </div>
 
 # Para que serve?
+
 Deseja coletar algumas das **novidades** relacionadas a game? Como **jogos, empresas de games, até mesmo polêmicas na internet**. Então utilize essa **API facil de utilizar**.
 
 # Primeiro passos
@@ -20,11 +21,7 @@ A **rota principal** da API é `/` ou seja, sem nenhum parâmetro a mais!
 ```json
 {
   "title": "Here is News Title",
-  "paragraphs": [
-  "first paragraph",
-  "second paragrapg",
-  ". . ."
-  ]
+  "paragraphs": ["first paragraph", "second paragrapg", ". . ."]
 }
 ```
 
@@ -64,7 +61,9 @@ Ela retorna até **10 novas notícias**, você pode **selecionar a quantidade** 
   "first paragraph",
   "second paragrapg",
   . . .]
-}, 
+},
 . . .
 ]}
 ```
+
+created by will
