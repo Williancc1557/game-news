@@ -1,4 +1,4 @@
-import { pinoConfig } from "../../logger/logger";
+import { logs } from "../../logger/logger";
 import type { GetAllGameNewsUseCase } from "./GetAllGameNewsUseCase";
 
 export class GetAllGameNewsController {
@@ -7,10 +7,9 @@ export class GetAllGameNewsController {
     ) { }
 
     public async handle(): Promise<object> {
-        pinoConfig.debug("handle controller executed");
+        logs.debug("handle controller executed");
 
-        const requestsNumber = 10;
-        const responseRequest = await this.getAllGameNewsUseCase.execute({ requestsNumber });
+        const responseRequest = await this.getAllGameNewsUseCase.execute({ requestsNumber: 10 });
 
         return responseRequest;
     }

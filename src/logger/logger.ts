@@ -1,8 +1,8 @@
 import pino from "pino";
 
-const pinoConfig = pino({
+const logs = pino({
     level: "debug",
     prettyPrint: true,
 }) as pino.Logger<pino.LoggerOptions>;
 
-export { pinoConfig };
+export { logs };

@@ -1,4 +1,4 @@
-import { pinoConfig } from "../../logger/logger";
+import { logs } from "../../logger/logger";
 import type { IWebScrapingProvider } from "../../providers/IWebScrapingProvider";
 
 export class GetGameNewsUseCase {
@@ -7,7 +7,7 @@ export class GetGameNewsUseCase {
     ) { }
 
     public async execute() {
-        pinoConfig.debug("Get game UseCase execute");
+        logs.debug("Get game UseCase execute");
         const response = await this.webScraping.getNews();
         return response;
     }

@@ -1,27 +1,27 @@
 import { app } from "./app";
-import { pinoConfig } from "./logger/logger";
+import { logs } from "./logger/logger";
 import { sleep } from "@techmmunity/utils";
 import { getAllGameNewsController } from "./UseCase/GetAllGameNews";
 
-const portaLocal = 3000;
-const portaHost = process.env.PORT;
-const PORTA = portaHost || portaLocal;
+const LOCAL = 3000;
+const HOST = process.env.PORT;
+const PORT = HOST || LOCAL;
 
 export let allNewsResponse: object;
 
-app.listen(PORTA, async () => {
-    pinoConfig.info(`server started using port ${PORTA}`);
-    const seconds = 60;
-    const minutes = 60;
-    const hours = 2;
+app.listen(PORT, async () => {
+    logs.info(`server started using port ${PORT}`);
+    const SECONDS = 60;
+    const MINUTES = 60;
+    const HOURS = 2;
 
     while (true) {
-        const allGameNewsController = await getAllGameNewsController.handle();
+        const allGameNews = await getAllGameNewsController.handle();
 
-        allNewsResponse = allGameNewsController;
+        allNewsResponse = allGameNews;
 
-        pinoConfig.info("The all news was getted");
+        logs.info("All news has been getted");
 
-        await sleep(seconds * minutes * hours);
+        await sleep(SECONDS * MINUTES * HOURS);
     }
 });
