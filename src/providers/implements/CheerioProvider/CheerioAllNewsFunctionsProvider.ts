@@ -1,73 +1,82 @@
 import axios from "axios";
-import { pinoConfig } from "../../../logger/logger";
+import { logs } from "../../../logger/logger";
 import cheerio from "cheerio";
+import type { News } from "../../../entities/news";
+export class GetNews {
+    public async getAllHrefNewsFunction(urlWebSite: string) {
+        logs.debug("get first href new executed");
 
+        const { data } = await axios.get(urlWebSite);
 
-export const getAllNewsFunction = async (allHrefs: Array<string>, newsRequestsNumber: number): Promise<object> => {
-    const linksComplet = [];
-    const news = [];
+        const linkAllNews: Array<string> = [];
+        const $ = cheerio.load(data);
 
+        $(".news-list__item__image").each((index: number, element: cheerio.Element) => {
+            const href = $(element).attr("href");
+            linkAllNews.push(href);
+        });
 
-    for (let i = 1; allHrefs.length > i; i++) {
-
-        if (allHrefs[i].includes("https://")) linksComplet.push(allHrefs[i]);
-        else linksComplet.push("https://www.theenemy.com.br/" + allHrefs[i]);
+        return linkAllNews;
     }
-    pinoConfig.debug("The links was generated!");
 
-    const maxNewsRequests = 10;
+    private prefixHttpExists(allLinks: Array<string>): Array<string> {
+        const links = [];
 
-    if (maxNewsRequests < newsRequestsNumber) throw new Error(`Should send only ${maxNewsRequests} requests`);
-
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers 
-    for (let i = 1; allHrefs.length + 1 > i; i++) {
-        try {
-            if (i <= newsRequestsNumber) {
-                const { data } = await axios.get(linksComplet[i]);
-
-                const $ = cheerio.load(data);
-
-                const locateTitle = 1;
-                const paragraphsNews = [];
-                const titleNews = $("title").text().match(/(?:(?:\n)*)(.*)/)[locateTitle];
-
-
-                $(".main-content__wrapper").find("p").each((index: number, element: cheerio.Element) => {
-                    paragraphsNews.push($(element).text());
-                });
-
-                const firstParagraph = 0;
-                if (paragraphsNews[firstParagraph] == undefined) {
-                    newsRequestsNumber++;
-                    throw new Error("Paragraphs not found");
-                }
-
-                news.push({
-                    title: titleNews,
-                    paragraphs: paragraphsNews,
-                });
-            } else {
-                break;
+        for (let i = 1; allLinks.length > i; i++) {
+            if (allLinks[i].includes("https://")) {
+                links.push(allLinks[i]);
             }
-        } catch { }
+            else {
+                links.push("https://www.theenemy.com.br/" + allLinks[i]);
+            }
+        }
+        return links;
     }
-    return news;
-};
 
-export const getAllHrefNewsFunction = async (urlWebSite: string) => {
-    pinoConfig.debug("get first href new executed");
+    public async getAllNewsFunction(allLinks: Array<string>, newsRequests: number): Promise<Array<News>> {
+        const news: Array<News> = [];
+        const links = this.prefixHttpExists(allLinks);
 
-    const { data } = await axios.get(urlWebSite);
+        logs.debug("The links has been generated!");
 
-    const $ = cheerio.load(data);
+        const maxNewsRequests = 10;
 
-    const linkAllNews: Array<string> = [];
+        if (maxNewsRequests < newsRequests) {
+            throw new Error(`Should send only ${maxNewsRequests} requests`);
+        }
 
-    $(".news-list__item__image").each((index: number, element: cheerio.Element) => {
-        const href = $(element).attr("href");
-        linkAllNews.push(href);
-    });
+        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+        for (let i = 1; allLinks.length + 1 > i; i++) {
+            try {
+                if (i <= newsRequests) {
+                    const { data } = await axios.get(links[i]);
 
-    return linkAllNews;
-};
+                    const $ = cheerio.load(data);
 
+                    const TITLE = 1;
+                    const titleNews: string = $("title").text().match(/(?:(?:\n)*)(.*)/)[TITLE];
+
+                    const paragraphsNews: Array<string> = [];
+                    $(".main-content__wrapper").find("p").each((index: number, element: cheerio.Element): void => {
+                        paragraphsNews.push($(element).text());
+                    });
+
+                    const firstParagraph = 0;
+                    if (!paragraphsNews[firstParagraph]) {
+                        newsRequests++;
+                        throw new Error("Paragraphs not found");
+                    }
+
+                    news.push({
+                        title: titleNews,
+                        paragraphs: paragraphsNews,
+                    });
+                } else {
+                    break;
+                }
+            } catch { }
+        }
+
+        return news;
+    }
+}
